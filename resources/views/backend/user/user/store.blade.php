@@ -1,5 +1,8 @@
-@include('backend.user.component.breadcumb',['title'=>$config['seo']['create']['title']])
-<form action="{{route('users.store')}}" class="box" method="post">
+@include('backend.user.user.component.breadcumb',['title'=>$config['seo'][$config['method']]['title']])
+@php
+    $form_action = ($config['method']=='edit') ? route('user.update',['id'=>$user->id]): route('user.store');
+@endphp
+<form action="{{$form_action}}" class="box" method="post">
     @csrf
     <div class="wrapper wrapper-content animated fadeInRight">
         <div class="row">
@@ -24,7 +27,7 @@
                                     <input
                                         type="text"
                                         name="email"
-                                        value="{{old('email')}}"
+                                        value="{{old('email',($user->email) ?? '')}} "
                                         class="form-control"
                                         placeholder=""
                                         autocomplete="off"
@@ -42,7 +45,7 @@
                                     <input
                                         type="text"
                                         name="name"
-                                        value="{{old('name')}}"
+                                        value="{{old('name',($user->name) ?? '')}} "
                                         class="form-control"
                                         placeholder=""
                                         autocomplete="off"
@@ -53,6 +56,15 @@
                                  @enderror
                             </div>
                         </div>
+                        @php
+                        $user_catalogue = [
+                            '0' => '[Chọn nhóm người dùng]',
+                            '1' => 'Quản trị viên',
+                            '1003' => 'Cộng tác viên',
+
+                    ];
+                            $user_catalogue_id = (isset($user->user_catalogue_id)) ? $user->user_catalogue_id : old('user_catalogue_id');
+                        @endphp
                         <div class="row mb15">
                             <div class="col-lg-6">
                                 <div class="form-row">
@@ -60,13 +72,13 @@
                                         Nhóm người dùng
                                     </label>
                                     <select name="user_catalogue_id" id="" class="form-control">
-                                        <option value="0">[Chọn nhóm người dùng]</option>
-                                        <option value="1" @if (old('user_catalogue_id')==1)
+
+                                        @foreach ($user_catalogue as $key => $value)
+                                            <option value="{{$key}}" @if ($user_catalogue_id == $key)
                                                     selected
-                                        @endif>Quản trị viên</option>
-                                        <option value="2" @if (old('user_catalogue_id')==2)
-                                                    selected
-                                        @endif>Cộng tác viên</option>
+                                        @endif>{{$value}}</option>
+                                        @endforeach
+
                                     </select>
                                 </div>
                                 @error('user_catalogue_id')
@@ -81,7 +93,7 @@
                                     <input
                                         type="date"
                                         name="birthday"
-                                        value="{{old('birthday')}}"
+                                        value="{{old('birthday',(isset($user->birthday)) ? date('Y-m-d',strtotime($user->birthday)) : '')}}"
                                         class="form-control"
                                         placeholder=""
                                         autocomplete="off"
@@ -89,7 +101,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row mb15">
+                        @if ($config['method'] == 'create')
+                            <div class="row mb15">
                             <div class="col-lg-6">
                                 <div class="form-row">
                                     <label for="" class="control-label text-left">
@@ -127,6 +140,7 @@
                                  @enderror
                             </div>
                         </div>
+                        @endif
                         <div class="row mb15">
                             <div class="col-lg-12">
                                 <div class="form-row">
@@ -136,7 +150,7 @@
                                     <input
                                         type="text"
                                         name="avatar"
-                                        value="{{old('avatar')}}"
+                                        value="{{old('email',($user->email) ?? '')}} "
                                         class="form-control"
                                         placeholder=""
                                         autocomplete="off"
@@ -144,14 +158,14 @@
                                 </div>
                             </div>
                         </div>
-
-
                     </div>
                 </div>
-
             </div>
         </div>
         <hr>
+        @php
+
+        @endphp
         <div class="row">
             <div class="col-lg-5">
                 <div class="panel-head">
@@ -213,7 +227,7 @@
                                     <input
                                         type="text"
                                         name="address"
-                                        value="{{old('address')}}"
+                                        value="{{old('address',($user->address) ?? '')}} "
                                         class="form-control"
                                         placeholder=""
                                         autocomplete="off"
@@ -230,7 +244,7 @@
                                     <input
                                         type="text"
                                         name="phone"
-                                        value="{{old('phone')}}"
+                                        value="{{old('phone',($user->phone) ?? '')}} "
                                         class="form-control"
                                         placeholder=""
                                         autocomplete="off"
@@ -245,7 +259,7 @@
                                     <input
                                         type="text"
                                         name="description"
-                                        value="{{old('description')}}"
+                                        value="{{old('description',($user->description) ?? '')}} "
                                         class="form-control"
                                         placeholder=""
                                         autocomplete="off"
@@ -264,7 +278,7 @@
     </div>
 </form>
 <script>
-    let province_id = '{{old('province_id')}}';
-    let district_id = '{{old('district_id')}}';
-    let ward_id = '{{old('ward_id')}}';
+    let province_id = '{{isset($user->province_id) ? $user->province_id : old('province_id')}}';
+    let district_id = '{{isset($user->district_id) ? $user->district_id : old('district_id')}}';
+    let ward_id = '{{isset($user->ward_id) ? $user->ward_id : old('ward_id')}}';
 </script>

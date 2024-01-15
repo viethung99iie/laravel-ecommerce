@@ -119,3 +119,20 @@ table strong {
 .select2-container .select2-selection--single {
     height: 32px !important;
 }
+.ibox-content{
+    background-color: transparent;
+}
+.active-bg{
+    background-color: #ffc !important;
+}
+#checkAll,
+.checkBoxItem{
+    width: 15px;
+    height: 15px;
+}
+.active-switch-1{
+
+}
+.active-switch-2{
+
+}

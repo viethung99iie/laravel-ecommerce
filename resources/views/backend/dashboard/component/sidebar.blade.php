@@ -1,3 +1,4 @@
+
 <nav class="navbar-default navbar-static-side" role="navigation">
         <div class="sidebar-collapse">
             <ul class="nav metismenu" id="side-menu">
@@ -20,17 +21,24 @@
                         IN+
                     </div>
                 </li>
-
-                <li class="active">
-                    <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Quản lí thành viên</span> <span class="fa arrow"></span></a>
+                @foreach (config('apps.module') as $key => $val)
+                <li class='{{(Request::segment(1)==$val['name'])? 'active' :'' }}'>
+                    <a href="#">
+                        <i class="{{ $val['icon'] }}"></i>
+                        <span class="nav-label">{{ $val['title'] }}</span>
+                        <span class="fa arrow"></span>
+                    </a>
+                    @if (isset($val['subModule']) && is_array($val['subModule']))
                     <ul class="nav nav-second-level">
-                        <li><a href="#">Quản lí hội nhóm</a></li>
-                        <li class="active"><a href="{{route('users.index')}}">Quản lí thành viên</a></li>
-                    </ul>
-                </li>
+                        @foreach ($val['subModule'] as $key => $value)
+                             <li><a href="{{route($value['route'])}}">{{$value['title']}}</a></li>
 
+                        @endforeach
+                    </ul>
+                        @endif
+                </li>
+                @endforeach
 
             </ul>
-
         </div>
     </nav>

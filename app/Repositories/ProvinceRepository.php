@@ -19,8 +19,6 @@ class ProvinceRepository extends BaseRepository implements ProvinceRepositoryInt
     ){
         $this->model = $model;
     }
-    public function all(){
-        return $this->model->all();
-    }
+
 
 }

@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('ward_id',10)->nullable();
             $table->string('address')->nullable();
             $table->string('image')->nullable();
-            $table->dateTime('birthday')->nullable();
+            $table->date('birthday')->nullable();
             $table->text('description')->nullable();
             $table->text('user_agent')->nullable();
             $table->text('ip')->nullable();

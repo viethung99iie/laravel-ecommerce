@@ -6,7 +6,7 @@ namespace App\Services\Interfaces;
  * Interface UserServiceInterface
  * @package App\Services\Interfaces
  */
-interface UserServiceInterface
+interface UserCatalogueServiceInterface
 {
     public function paginate($request);
     public function create( $payload);
