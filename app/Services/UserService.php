@@ -115,6 +115,7 @@ class UserService implements UserServiceInterface
             'email',
             'phone',
             'address',
+            'image',
             'publish',
             'user_catalogue_id'
         ];

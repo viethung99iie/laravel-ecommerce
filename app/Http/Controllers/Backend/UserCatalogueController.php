@@ -11,14 +11,14 @@ use Illuminate\Http\Request;
 class UserCatalogueController extends Controller
 {
     protected $userCatalogueService;
-    protected $UserCatalogueRepository;
+    protected $userCatalogueRepository;
 
     public function __construct(
         UserCatalogueService $userCatalogueService,
-        UserCatalogueRepository $UserCatalogueRepository,
+        UserCatalogueRepository $userCatalogueRepository,
     ) {
         $this->userCatalogueService = $userCatalogueService;
-        $this->UserCatalogueRepository = $UserCatalogueRepository;
+        $this->userCatalogueRepository = $userCatalogueRepository;
     }
 
     public function index(Request $request){
@@ -54,13 +54,13 @@ class UserCatalogueController extends Controller
 
     public function store(StoreUserCatalogueRequest $request){
         if($this->userCatalogueService->create($request)){
-            return redirect()->route('user-catalogue.index')->with('success','Thêm mới bảng ghi thành công');
+            return redirect()->route('user.catalogue.index')->with('success','Thêm mới bảng ghi thành công');
         }
-        return redirect()->route('user-catalogue.index')->with('error','Đã có lỗi xảy ra, vui lòng  thử lại');
+        return redirect()->route('user.catalogue.index')->with('error','Đã có lỗi xảy ra, vui lòng  thử lại');
     }
 
     public function edit($id){
-        $userCatalogue = $this->UserCatalogueRepository->findById($id);
+        $userCatalogue = $this->userCatalogueRepository->findById($id);
 
         $config['seo'] = config('apps.usercatalogue');
         $config['method'] = 'edit';
@@ -74,13 +74,13 @@ class UserCatalogueController extends Controller
 
     public function update($id,StoreUserCatalogueRequest $request){
         if($this->userCatalogueService->update($id,$request)){
-            return redirect()->route('user-catalogue.index')->with('success','Cập nhật bảng ghi thành công');
+            return redirect()->route('user.catalogue.index')->with('success','Cập nhật bảng ghi thành công');
         }
-        return redirect()->route('user-catalogue.index')->with('error','Đã có lỗi xảy ra, vui lòng  thử lại');
+        return redirect()->route('user.catalogue.index')->with('error','Đã có lỗi xảy ra, vui lòng  thử lại');
     }
 
     public function delete($id){
-        $userCatalogue = $this->UserCatalogueRepository->findById($id);
+        $userCatalogue = $this->userCatalogueRepository->findById($id);
         $config['seo'] = config('apps.usercatalogue');
         $template = 'backend.user.user-catalogue.delete';
         return view('backend.dashboard.layout',compact(
@@ -92,8 +92,8 @@ class UserCatalogueController extends Controller
 
     public function destroy($id){
         if($this->userCatalogueService->delete($id)){
-            return redirect()->route('user-catalogue.index')->with('success','Xóa người dùng thành công');
+            return redirect()->route('user.catalogue.index')->with('success','Xóa người dùng thành công');
         }
-        return redirect()->route('user-catalogue.index')->with('error','Đã có lỗi xảy ra, vui lòng  thử lại');
+        return redirect()->route('user.catalogue.index')->with('error','Đã có lỗi xảy ra, vui lòng  thử lại');
     }
 }

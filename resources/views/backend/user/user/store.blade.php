@@ -1,4 +1,4 @@
-@include('backend.user.user.component.breadcumb',['title'=>$config['seo'][$config['method']]['title']])
+@include('backend.dashboard.component.breadcumb',['title'=>$config['seo'][$config['method']]['title']])
 @php
     $form_action = ($config['method']=='edit') ? route('user.update',['id'=>$user->id]): route('user.store');
 @endphp
@@ -149,9 +149,10 @@
                                     </label>
                                     <input
                                         type="text"
-                                        name="avatar"
-                                        value="{{old('email',($user->email) ?? '')}} "
-                                        class="form-control"
+                                        name="image"
+                                        value="{{old('email',($user->image) ?? '')}} "
+                                        class="form-control upload-image"
+                                        data-type = 'Images'
                                         placeholder=""
                                         autocomplete="off"
                                     >

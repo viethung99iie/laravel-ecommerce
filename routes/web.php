@@ -4,6 +4,8 @@ use App\Http\Controllers\Ajax\DashboardController as AjaxDashboardController;
 use App\Http\Controllers\Ajax\LocationController;
 use App\Http\Controllers\Backend\AuthController;
 use App\Http\Controllers\Backend\DashboardController;
+use App\Http\Controllers\Backend\LanguageController;
+use App\Http\Controllers\Backend\PostCatalogueController;
 use App\Http\Controllers\Backend\UserCatalogueController;
 use App\Http\Controllers\Backend\UserController;
 use Illuminate\Support\Facades\Route;
@@ -48,7 +50,25 @@ Route::group(['prefix'=> 'user/catalogue/'],function(){
      Route::delete('destroy/{id}', [UserCatalogueController::class,'destroy'])->name('user.catalogue.destroy');
 })->middleware('admin');
 
+Route::group(['prefix'=> 'language/'],function(){
+    Route::get('index', [LanguageController::class,'index'])->name('language.index');
+    Route::get('create', [LanguageController::class,'create'])->name('language.create');
+    Route::post('store', [LanguageController::class,'store'])->name('language.store');
+    Route::get('edit/{id}', [LanguageController::class,'edit'])->where(['id'=>'[0-9]+'])->name('language.edit');
+    Route::post('update/{id}', [LanguageController::class,'update'])->name('language.update');
+    Route::get('delete/{id}', [LanguageController::class,'delete'])->where(['id'=>'[0-9]+'])->name('language.delete');
+     Route::delete('destroy/{id}', [LanguageController::class,'destroy'])->name('language.destroy');
+})->middleware('admin');
 
+Route::group(['prefix'=> 'post/catalogue/'],function(){
+    Route::get('index', [PostCatalogueController::class,'index'])->name('post.catalogue.index');
+    Route::get('create', [PostCatalogueController::class,'create'])->name('post.catalogue.create');
+    Route::post('store', [PostCatalogueController::class,'store'])->name('post.catalogue.store');
+    Route::get('edit/{id}', [PostCatalogueController::class,'edit'])->where(['id'=>'[0-9]+'])->name('post.catalogue.edit');
+    Route::post('update/{id}', [PostCatalogueController::class,'update'])->name('post.catalogue.update');
+    Route::get('delete/{id}', [PostCatalogueController::class,'delete'])->where(['id'=>'[0-9]+'])->name('post.catalogue.delete');
+     Route::delete('destroy/{id}', [PostCatalogueController::class,'destroy'])->name('post.catalogue.destroy');
+})->middleware('admin');
 // AJAX
 Route::get('ajax/location/getLocation', [LocationController::class,'getLocation'])->name('ajax.location.getLocation');
 Route::post('ajax/dashboard/changeStatus', [AjaxDashboardController::class,'changeStatus'])->name('ajax.dashboard.changeStatus');

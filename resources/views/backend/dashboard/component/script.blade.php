@@ -9,6 +9,10 @@
 
  @if (isset($config['js']) && is_array($config['js']))
     @foreach ($config['js'] as $item )
-        <script src="{{$item}}"></script>
+        @if (Str::contains($item, "backend"))
+            <script src="{{asset($item)}}"></script>
+        @else
+            <script src="{{$item}}"></script>
+        @endif
     @endforeach
  @endif

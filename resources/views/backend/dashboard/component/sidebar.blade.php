@@ -22,7 +22,7 @@
                     </div>
                 </li>
                 @foreach (config('apps.module') as $key => $val)
-                <li class='{{(Request::segment(1)==$val['name'])? 'active' :'' }}'>
+                <li class='{{ (in_array(Request::segment(1),$val['name']))?'active':'' }}'>
                     <a href="#">
                         <i class="{{ $val['icon'] }}"></i>
                         <span class="nav-label">{{ $val['title'] }}</span>

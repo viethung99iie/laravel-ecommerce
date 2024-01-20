@@ -50,16 +50,7 @@ class UserController extends Controller
         ));
     }
     public function create(){
-        $config = [
-            'js' => [
-                'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js',
-                'backend/library/location.js',
-            ],
-            'css'=>[
-
-                'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css',
-            ]
-        ];
+        $config = $this->config();
         $config['seo'] = config('apps.user');
         $config['method'] = 'create';
         $provinces = $this->provinceRepository->all();
@@ -73,23 +64,14 @@ class UserController extends Controller
 
     public function store(StoreUserRequest $request){
         if($this->userService->create($request)){
-            return redirect()->route('users.index')->with('success','Thêm mới người dùng thành công');
+            return redirect()->route('user.index')->with('success','Thêm mới người dùng thành công');
         }
-        return redirect()->route('users.index')->with('error','Đã có lỗi xảy ra, vui lòng  thử lại');
+        return redirect()->route('user.index')->with('error','Đã có lỗi xảy ra, vui lòng  thử lại');
     }
 
     public function edit($id){
         $user = $this->userRepository->findById($id);
-        $config = [
-            'js' => [
-                'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js',
-                'backend/library/location.js',
-            ],
-            'css'=>[
-
-                'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css',
-            ]
-        ];
+        $config = $this->config();
         $config['seo'] = config('apps.user');
         $config['method'] = 'edit';
         $provinces = $this->provinceRepository->all();
@@ -104,9 +86,9 @@ class UserController extends Controller
 
     public function update($id,UpdateUserRequest $request){
         if($this->userService->update($id,$request)){
-            return redirect()->route('users.index')->with('success','Cập nhật người dùng thành công');
+            return redirect()->route('user.index')->with('success','Cập nhật người dùng thành công');
         }
-        return redirect()->route('users.index')->with('error','Đã có lỗi xảy ra, vui lòng  thử lại');
+        return redirect()->route('user.index')->with('error','Đã có lỗi xảy ra, vui lòng  thử lại');
     }
 
     public function delete($id){
@@ -122,8 +104,22 @@ class UserController extends Controller
 
     public function destroy($id){
         if($this->userService->delete($id)){
-            return redirect()->route('users.index')->with('success','Xóa người dùng thành công');
+            return redirect()->route('user.index')->with('success','Xóa người dùng thành công');
         }
-        return redirect()->route('users.index')->with('error','Đã có lỗi xảy ra, vui lòng  thử lại');
+        return redirect()->route('user.index')->with('error','Đã có lỗi xảy ra, vui lòng  thử lại');
+    }
+
+    private function config(){
+        return [
+            'js' => [
+                'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js',
+                'backend/library/location.js',
+                'backend/plugins/ckfinder_2/ckfinder.js',
+                'backend/library/finder.js',
+            ],
+            'css'=>[
+                'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css',
+            ]
+        ];
     }
 }

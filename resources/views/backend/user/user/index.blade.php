@@ -5,7 +5,7 @@
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
                     <h5>{{$config['seo']['index']['table']}}</h5>
-                    @include('backend.user.user.component.tool')
+                    @include('backend.user.user.component.tool', ['model' => 'User'])
                 </div>
                 <div class="ibox-content">
                     @include('backend.user.user.component.filter',['title'=>$config['seo']['create']['title']])

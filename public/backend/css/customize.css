@@ -20,7 +20,7 @@ h5 {
     text-transform: uppercase;
 }
 table .image {
-    height: 93.45px;
+    height: 65.45px;
     display: block;
 }
 .img-cover img {
@@ -130,9 +130,60 @@ table strong {
     width: 15px;
     height: 15px;
 }
-.active-switch-1{
-
+.meta-title{
+    color:#1a0dab;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 5px ;
 }
-.active-switch-2{
-
+.meta-canonical{
+    font-size: 14px;
+    color: green;
+    margin-bottom: 3px;
+}
+.meta-description{
+    font-size: 14px;
+}
+.seo-wrapper{
+    margin-top: 30px;
+}
+.seo-wrapper textarea {
+    height: 200px !important;
+}
+.notice{
+    font-size: 11px;
+    font-style: italic;
+    display: block;
+    margin-bottom: 10px;
+}
+.ibox-content{
+    background-color: white;
+}
+.image-target
+{
+    cursor: pointer;
+}
+.input-wrapper{
+    position: relative;
+}
+.input-wrapper input:focus{
+    border: 1px solid #e5e6e7;
+}
+.input-wrapper .baseUrl {
+    position: absolute;
+    background-color: #1a1a1a;
+    height: 34px;
+    line-height: 34px;
+    top: 0;
+    left: 0;
+    display: inline-block;
+    padding: 0 10px;
+    background: linear-gradient(to bottom, #fff , #f0fafb);
+    border-color: #e5e6e7;
+    border: 1px solid #e5e6e7;
+    border-right: 0;
+}
+input[name =canonical]{
+    color: navy;
+    font-weight: 600;
 }

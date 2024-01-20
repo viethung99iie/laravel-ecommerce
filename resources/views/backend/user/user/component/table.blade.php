@@ -21,7 +21,7 @@
 
                 </td>
                 <td >
-                    <span class="img-cover image "><img src="https://th.bing.com/th/id/OIP.H33ToM8hwdW580U1Tc4H3gHaHY?rs=1&pid=ImgDetMain" alt=""></span>
+                    <span class="img-cover image "><img src="{{asset($user->image)}}" alt=""></span>
                 </td>
                 <td>
                     <p><strong>Họ và tên</strong>: {{$user->name}}</p>
@@ -60,5 +60,3 @@
             </tbody>
         </table>
 {{$users->links('pagination::bootstrap-4')}}
-
-

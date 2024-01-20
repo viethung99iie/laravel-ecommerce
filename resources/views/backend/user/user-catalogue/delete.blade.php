@@ -1,4 +1,4 @@
-@include('backend.user.user-catalogue.component.breadcumb',['title'=>$config['seo']['delete']['title']])
+@include('backend.dashboard.component.breadcumb',['title'=>$config['seo']['delete']['title']])
 <form action="{{route('user.catalogue.destroy',$userCatalogue->id)}}" class="box" method="post">
     @csrf
     @method('Delete')

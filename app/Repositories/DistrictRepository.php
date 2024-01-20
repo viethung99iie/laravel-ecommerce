@@ -18,5 +18,5 @@ class DistrictRepository extends BaseRepository implements DistrictRepositoryInt
     ){
         $this->model = $model;
     }
-
+    
 }

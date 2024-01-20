@@ -2,9 +2,24 @@
 return [
     'module' =>
     [
+        'title' => 'QL bài viết',
+        'icon' => 'fa fa-th-large',
+        'name' => ['post'],
+        'subModule' => [
+            [
+                'title' => 'QL nhóm bài viết',
+                'route' => 'post.catalogue.index',
+            ],
+            [
+                'title' => 'QL bài viết',
+                'route' => 'post.catalogue.index',
+            ]
+        ]
+    ],
+    [
         'title' => 'QL thành viên',
         'icon' => 'fa fa-user',
-        'name' => 'user',
+        'name' => ['user'],
         'subModule' => [
             [
                 'title' => 'QL nhóm thành viên',
@@ -17,18 +32,15 @@ return [
         ]
     ],
     [
-        'title' => 'QL bài viết',
+        'title' => 'Cấu hình chung',
         'icon' => 'fa fa-th-large',
-        'name' => 'post',
+        'name' => ['language'],
         'subModule' => [
             [
-                'title' => 'QL nhóm bài viết',
-                'route' => 'user.catalogue.index',
+                'title' => 'QL ngôn ngữ',
+                'route' => 'language.index',
             ],
-            [
-                'title' => 'QL bài viết',
-                'route' => 'user.index',
-            ]
+
         ]
     ],
 ];
